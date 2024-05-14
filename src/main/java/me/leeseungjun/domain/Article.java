@@ -37,7 +37,7 @@ public class Article{
                 this.title = title;
                 this.content = content;
         }
-        
+
         @CreatedDate
         @Column(name = "created_at")
         private LocalDate createdAt;
