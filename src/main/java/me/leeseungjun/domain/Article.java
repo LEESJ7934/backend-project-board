@@ -5,7 +5,14 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
+
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,5 +37,14 @@ public class Article{
                 this.title = title;
                 this.content = content;
         }
+        
+        @CreatedDate
+        @Column(name = "created_at")
+        private LocalDate createdAt;
+
+        @LastModifiedDate
+        @Column(name = "updated_at")
+        private LocalDate updated_at;
+
 }
 
