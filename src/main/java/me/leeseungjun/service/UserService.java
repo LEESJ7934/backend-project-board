@@ -14,13 +14,24 @@ import org.springframework.stereotype.Service;
 // 비밀번호를 안전하게 해시한 후 데이터베이스에 저장 저장된 사용자의 ID를 반환
 public class UserService {
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Long save(AddUserRequest dto){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         return userRepository.save(User.builder()
                 .email(dto.getEmail())
-                //패스워드 활성화
-                .password(bCryptPasswordEncoder.encode(dto.getPassword()))
+                .password(encoder.encode(dto.getPassword()))
                 .build()).getId();
+    }
+
+
+    public User findById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Unexpected user"));
+    }
+
+    public  User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("unexpected user"));
     }
 }

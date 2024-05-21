@@ -11,6 +11,16 @@ spring:
   h2:
     console:
       enabled: true
-jwt:
-  issuer: sj7934@gmail.com
-  secret_key: Backend-developer
+  jwt:
+    issuer: sj7934@gmail.com
+    secret_key: Backend-developer
+  Security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 705052953305-t5mpcm4h66f0ule75fjhjmf8sa5ro9cq.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
