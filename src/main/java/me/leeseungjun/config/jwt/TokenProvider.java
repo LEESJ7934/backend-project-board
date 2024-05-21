@@ -51,7 +51,6 @@ public class TokenProvider {
             Jwts.parser()
                     .setSigningKey(jwtProperties.getSecretKey()) //비밀값으로 복호화
                     .parseClaimsJws(token);
-
             return true;
         }catch (Exception e){
             return false;

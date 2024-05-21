@@ -11,9 +11,6 @@ spring:
   h2:
     console:
       enabled: true
-  jwt:
-    issuer: sj7934@gmail.com
-    secret_key: Backend-developer
   Security:
     oauth2:
       client:
@@ -24,3 +21,7 @@ spring:
             scope:
               - email
               - profile
+
+jwt:
+  issuer: sj7934@gmail.com
+  secret_key: Backend-developer
