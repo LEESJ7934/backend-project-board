@@ -47,7 +47,7 @@ public class WebOAuthSecurityConfig {
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        //헤더를 확인할 커스텀 필터 추가
+        // 커스텀 필터 추가(헤더 확인)
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 

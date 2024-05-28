@@ -5,8 +5,6 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
-  datasource:
-    username: sa
   h2:
     console:
       enabled: true
