@@ -13,8 +13,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 705052953305-t5mpcm4h66f0ule75fjhjmf8sa5ro9cq.apps.googleusercontent.com
-            client-secret: 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
+            client-id: random_id
+            client-secret: random_secret
             scope:
               - email
               - profile
@@ -22,4 +22,4 @@ spring:
 
 jwt:
   issuer: sj7934@gmail.com
-  secret_key: Backend-developer
+  secret_key: random_key
