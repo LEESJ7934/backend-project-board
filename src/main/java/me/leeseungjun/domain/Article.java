@@ -5,12 +5,12 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -54,6 +54,9 @@ public class Article{
         @LastModifiedDate
         @Column(name = "updated_at")
         private LocalDate updated_at;
+
+        @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
+        private List<Comment> comments;
 
 }
 
