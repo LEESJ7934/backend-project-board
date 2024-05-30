@@ -3,9 +3,8 @@ package me.leeseungjun.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.leeseungjun.domain.Article;
-import me.leeseungjun.dto.AddArticleRequest;
-import me.leeseungjun.dto.ArticleResponse;
-import me.leeseungjun.dto.UpdateArticleRequest;
+import me.leeseungjun.domain.Comment;
+import me.leeseungjun.dto.*;
 import me.leeseungjun.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,5 +69,12 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
                 .body(updateArticle);
+    }
+
+    @PostMapping("/api/comments")
+    public ResponseEntity<AddCommentResponse> addComment(@RequestBody AddCommentRequest request, Principal principal){
+        Comment savedComment = blogService.addComment(request, principal.getName());
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new AddCommentResponse(savedComment));
     }
 }
