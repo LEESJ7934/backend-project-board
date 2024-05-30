@@ -25,7 +25,7 @@ public class Comment {
     @Column(name = "author", nullable = false)
     private String author;
 
-    @Column(name = "coetent", nullable = false)
+    @Column(name = "content", nullable = false)
     private String content;
 
     @CreatedDate
