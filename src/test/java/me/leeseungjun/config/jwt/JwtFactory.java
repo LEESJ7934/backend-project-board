@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Map;
 
 
-
 @Getter
 public class JwtFactory {
     private String subject = "test.gmail.com";

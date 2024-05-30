@@ -19,6 +19,7 @@ spring:
               - email
               - profile
 
+
 jwt:
   issuer: sj7934@gmail.com
   secret_key: Backend-developer

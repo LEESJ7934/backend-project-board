@@ -18,7 +18,6 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f7157f02-7594-4473-8638-9b38a3118cc7">
       <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[create database blog;
-
 use blog;
 
 create table article (
@@ -55,12 +54,13 @@ show tables;]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="f7157f02-7594-4473-8638-9b38a3118cc7" object-ref="consoles/Connection" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f7157f02-7594-4473-8638-9b38a3118cc7" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="f7157f02-7594-4473-8638-9b38a3118cc7" dataset="blog.article" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -82,7 +82,7 @@ show tables;]]></console>
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="awseb-e-pm73myssq2-stack-awsebrdsdatabase-bbpmt7vudbhv.c7uq04qo2kbq.ap-northeast-2.rds.amazonaws.com" />
+          <host value="awseb-e-qveupttixw-stack-awsebrdsdatabase-vgo6phhmmir0.c7uq04qo2kbq.ap-northeast-2.rds.amazonaws.com" />
           <port value="3306" />
           <database value="mysql" />
           <tns-folder value="" />
