@@ -2,6 +2,7 @@ package me.leeseungjun.service;
 
 
 import lombok.RequiredArgsConstructor;
+import me.leeseungjun.config.error.exception.ArticleNotFoundException;
 import me.leeseungjun.domain.Article;
 import me.leeseungjun.domain.Comment;
 import me.leeseungjun.dto.AddArticleRequest;
@@ -32,7 +33,7 @@ public class BlogService {
 
     public Article findById(long id) {
         return blogRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+                .orElseThrow(ArticleNotFoundException::new);
     }
 
     public void delete(long id) {
