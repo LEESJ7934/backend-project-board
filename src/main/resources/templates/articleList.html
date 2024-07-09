@@ -11,11 +11,13 @@
     <h4 class="mb-3">블로그에 오신 것을 환영합니다.</h4>
 </div>
 
+
+<!-- 게시글 목록을 보여줌-->
 <div class="container">
     <button type="button" id="create-btn"
             th:onclick="|location.href='@{/new-article}'|"
             class="btn btn-secondary btn-sm mb-3">글 등록</button>
-    <div class="row-6" th:each="item : ${articles}">
+    <div class="row-6" th:each="item : ${paging}">
         <div class="card">
             <div class="card-header" th:text="${item.id}">
             </div>
@@ -27,7 +29,29 @@
         </div>
         <br>
     </div>
-
+    <!-- 페이징처리 시작(1페이지당5개의 글)-->
+    <div th:if="${!paging.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{|?page=${paging.number-1}|}">
+                    <span>이전</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                th:classappend="${page == paging.number} ? 'active'"
+                class="page-item">
+                <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                    <span>다음</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 페이징처리 끝 -->
     <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
 </div>
 
