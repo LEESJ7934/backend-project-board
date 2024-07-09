@@ -26,23 +26,30 @@ public class BlogService {
     private final CommentRepository commentRepository;
 
 
+    //게시판 목록을 페이지로
     public Page<Article> getList(int page) {
         Pageable pageable = PageRequest.of(page, 5);
         return this.blogRepository.findAll(pageable);
     }
+
+    //게시판글 저장 기능
     public Article save(AddArticleRequest request, String userName) {
         return blogRepository.save(request.toEntity(userName));
     }
 
+    //게시판 글 찾는 기능
     public List<Article> findAll() {
         return blogRepository.findAll();
     }
 
+    //게시판 아이디로 찾기
     public Article findById(long id) {
         return blogRepository.findById(id)
                 .orElseThrow(ArticleNotFoundException::new);
     }
 
+
+    //게시판 삭제
     public void delete(long id) {
         Article article = blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found : " + id));

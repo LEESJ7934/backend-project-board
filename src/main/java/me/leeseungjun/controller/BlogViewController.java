@@ -24,9 +24,9 @@ import java.util.List;
 public class BlogViewController {
     private final BlogService blogService;
 
-    //전체 게시글 목록
+    //전체 게시글 목록(페이징 기능 추가)
     @GetMapping("/articles")
-    public String getArticles(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+    public String getArticles(Model model, @RequestParam(value="page", defaultValue="0") int page) { //기본 페이지 값을 0으로 추가
 
         Page<Article> paging = this.blogService.getList(page);
         model.addAttribute("paging", paging);
