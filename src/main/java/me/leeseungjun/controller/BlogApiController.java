@@ -78,4 +78,11 @@ public class BlogApiController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new AddCommentResponse(savedComment));
     }
+
+    @DeleteMapping("/api/comments/{id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable(name = "id") long id, Principal principal) {
+        blogService.deleteComment(id, principal.getName());
+        return ResponseEntity.ok()
+                .build();
+    }
 }

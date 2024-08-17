@@ -47,10 +47,13 @@
 
             <section class="mb-3" th:each="comment : ${article.comments}">
                 <div class="card mb-1">
+                    <input type="hidden" id="comment-id" th:value="${comment.id}">
                     <div class="card-body">
                         <div class="text-muted fst-italic mb-2"
                              th:text="|Commented on ${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm')} By ${comment.author}|"></div>
                         <p class="card-text" th:text="${comment.content}"></p>
+                        <button type="button" class="btn btn-primary comment-delete-btn"
+                                th:data-comment-id="${comment.id}">댓글 삭제</button>
                     </div>
                 </div>
             </section>

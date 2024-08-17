@@ -84,4 +84,14 @@ public class BlogService {
         return commentRepository.save(request.toEntity(userName, article));
     }
 
+    public void deleteComment(long id, String userName) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Comment not found: " + id));
+
+        // 작성자 확인
+        if (!comment.getAuthor().equals(userName)) {
+            throw new IllegalArgumentException("You are not authorized to delete this comment");
+        }
+        commentRepository.delete(comment);
+    }
 }

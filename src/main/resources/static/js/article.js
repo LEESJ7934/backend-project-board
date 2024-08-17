@@ -42,6 +42,30 @@ if(commentCreateButton) {
     });
 }
 
+
+// 댓글 삭제 버튼
+const commentDeleteButtons = document.querySelectorAll('.comment-delete-btn');
+
+if (commentDeleteButtons) {
+    commentDeleteButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            const commentId = button.getAttribute('data-comment-id');
+
+            function success() {
+                alert('댓글이 성공적으로 삭제되었습니다.');
+                location.reload(); // 페이지 새로고침
+            };
+
+            function fail() {
+                alert('댓글 삭제에 실패했습니다.');
+            };
+
+            // 서버로 DELETE 요청 보내기
+            httpRequest('DELETE', '/api/comments/' + commentId, null, success, fail);
+        });
+    });
+}
+
 // 수정 기능
 const modifyButton = document.getElementById('modify-btn');
 
