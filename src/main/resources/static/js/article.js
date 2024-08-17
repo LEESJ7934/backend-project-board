@@ -44,25 +44,51 @@ if(commentCreateButton) {
 
 
 // 댓글 삭제 버튼
-const commentDeleteButtons = document.querySelectorAll('.comment-delete-btn');
+const commentDeleteButton = document.querySelectorAll('.comment-delete-btn');
 
-if (commentDeleteButtons) {
-    commentDeleteButtons.forEach(button => {
+if (commentDeleteButton) {
+    commentDeleteButton.forEach(button => {
         button.addEventListener('click', event => {
             const commentId = button.getAttribute('data-comment-id');
 
             function success() {
                 alert('댓글이 성공적으로 삭제되었습니다.');
-                location.reload(); // 페이지 새로고침
+                window.location.reload();
             };
 
             function fail() {
                 alert('댓글 삭제에 실패했습니다.');
+                window.location.reload();
             };
 
             // 서버로 DELETE 요청 보내기
             httpRequest('DELETE', '/api/comments/' + commentId, null, success, fail);
         });
+    });
+}
+
+// 댓글 수정 기능
+const commentModifyButton = document.getElementById('comment-modify-btn');
+
+if (commentModifyButton) {
+    commentModifyButton.addEventListener('click', event => {
+        let params = new URLSearchParams(location.search);
+        let id = params.get('id');
+
+        body = JSON.stringify({
+            content: document.getElementById('content').value
+        })
+
+        function success() {
+            alert('수정 완료되었습니다.');
+            window.history.back();
+        }
+
+        function fail() {
+            alert('수정 실패했습니다.');
+        }
+
+        httpRequest('PUT',`/api/comments/${id}`, body, success, fail);
     });
 }
 

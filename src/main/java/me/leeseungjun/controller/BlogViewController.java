@@ -3,9 +3,9 @@ package me.leeseungjun.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.leeseungjun.domain.Article;
-import me.leeseungjun.dto.ArticleListViewResponse;
-import me.leeseungjun.dto.ArticleResponse;
-import me.leeseungjun.dto.ArticleViewResponse;
+import me.leeseungjun.domain.Comment;
+import me.leeseungjun.dto.*;
+import me.leeseungjun.repository.CommentRepository;
 import me.leeseungjun.service.BlogService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +23,8 @@ import java.util.List;
 @Controller
 public class BlogViewController {
     private final BlogService blogService;
+    private final CommentRepository commentRepository;
+
 
     //전체 게시글 목록(페이징 기능 추가)
     @GetMapping("/articles")
@@ -55,6 +57,17 @@ public class BlogViewController {
             model.addAttribute("article", new ArticleViewResponse(article));
         }
         return "newArticle";
+
+    }
+    //수정 댓글
+    @GetMapping("/new-comment")
+
+    public String newComment(@RequestParam(required = false) Long id, Model model) {
+
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Comment not found: " + id));
+            model.addAttribute("comment", new CommentViewResponse(comment));
+        return "newComment";
 
     }
 }

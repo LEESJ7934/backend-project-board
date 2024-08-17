@@ -8,6 +8,7 @@ import me.leeseungjun.domain.Comment;
 import me.leeseungjun.dto.AddArticleRequest;
 import me.leeseungjun.dto.AddCommentRequest;
 import me.leeseungjun.dto.UpdateArticleRequest;
+import me.leeseungjun.dto.UpdateCommentRequest;
 import me.leeseungjun.repository.BlogRepository;
 import me.leeseungjun.repository.CommentRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -69,6 +70,16 @@ public class BlogService {
         return article;
     }
 
+
+    @Transactional//중간에 값이 에러가 떠도 제대로 된 값 수정을 보장
+    public Comment update(long id, UpdateCommentRequest request) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+
+        comment.update(request.getContent());
+
+        return comment;
+    }
     // 게시글을 작성한 유저인지 확인
     private static void authorizeArticleAuthor(Article article) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();

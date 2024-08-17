@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -32,6 +33,10 @@ public class Comment {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @LastModifiedDate //댓글 수정 됐을 때 시간 저장
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @ManyToOne
     private Article article;
 
@@ -39,6 +44,10 @@ public class Comment {
     public Comment(Article article, String author, String content) {
         this.article = article;
         this.author = author;
+        this.content = content;
+    }
+
+    public void update(String content) {
         this.content = content;
     }
 }
