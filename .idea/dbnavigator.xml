@@ -60,6 +60,7 @@ show tables;]]></console>
     <connection id="f7157f02-7594-4473-8638-9b38a3118cc7" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="f7157f02-7594-4473-8638-9b38a3118cc7" dataset="blog.refresh_token" active-filter-id="" />
     <filter-actions connection-id="f7157f02-7594-4473-8638-9b38a3118cc7" dataset="blog.article" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

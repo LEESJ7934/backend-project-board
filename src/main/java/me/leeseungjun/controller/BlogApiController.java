@@ -33,6 +33,7 @@ public class BlogApiController {
                 .body(savedArticle);
     }
 
+    //전체 게시글 조회
     @GetMapping("/api/articles")
     public ResponseEntity<List<ArticleResponse>> findAllArticles() {
         List<ArticleResponse> articles = blogService.findAll()
@@ -44,6 +45,7 @@ public class BlogApiController {
                 .body(articles);
     }
 
+    //글 하나 조회
     @GetMapping("/api/articles/{id}") //
     // URL 경로에서 값 추출
     public ResponseEntity<ArticleResponse> findArticle(@PathVariable(name = "id") long id) { //컨트롤러에서 파라미터 이름에 대한 정보만 추가 (name = "id")를 붙여야 오류 발생x 식별을 못함
@@ -55,6 +57,7 @@ public class BlogApiController {
 
 
 
+    //글 삭제
     @DeleteMapping("/api/articles/{id}")
         public ResponseEntity<Void> deleteArticle(@PathVariable(name = "id") long id) {
             blogService.delete(id);
@@ -64,6 +67,7 @@ public class BlogApiController {
 
     }
 
+    //글 수정
     @PutMapping("/api/articles/{id}")
     public ResponseEntity<Article> updateArticle(@PathVariable(name = "id") long id, @RequestBody UpdateArticleRequest request){
         Article updateArticle = blogService.update(id, request);
@@ -72,6 +76,7 @@ public class BlogApiController {
                 .body(updateArticle);
     }
 
+    //댓글 생성
     @PostMapping("/api/comments")
     public ResponseEntity<AddCommentResponse> addComment(@RequestBody AddCommentRequest request, Principal principal){
         Comment savedComment = blogService.addComment(request, principal.getName());
@@ -79,6 +84,7 @@ public class BlogApiController {
                 .body(new AddCommentResponse(savedComment));
     }
 
+    //댓글 삭제
     @DeleteMapping("/api/comments/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable(name = "id") long id, Principal principal) {
         blogService.deleteComment(id, principal.getName());
@@ -87,6 +93,7 @@ public class BlogApiController {
     }
 
 
+    //댓글 수정
     @PutMapping("/api/comments/{id}")
     public ResponseEntity<Comment> updateComment(@PathVariable(name = "id") long id, @RequestBody UpdateCommentRequest request){
         Comment updateComment = blogService.update(id,request);

@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @EntityListeners(AuditingEntityListener.class)
@@ -37,11 +38,13 @@ public class Article{
                 this.title = title;
                 this.content = content;
         }
-        @Builder //빌더 패턴으로 객체 생성
+
+        @Builder
         public Article(String title, String content){
         this.title=title;
         this.content=content;
         }
+
         public void update(String title, String content) {
                 this.title = title;
                 this.content = content;
@@ -49,11 +52,11 @@ public class Article{
 
         @CreatedDate
         @Column(name = "created_at")
-        private LocalDate createdAt;
+        private LocalDateTime createdAt;
 
         @LastModifiedDate
         @Column(name = "updated_at")
-        private LocalDate updated_at;
+        private LocalDateTime updatedAt;
 
         @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
         private List<Comment> comments;
