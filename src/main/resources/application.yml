@@ -8,6 +8,13 @@ spring:
   h2:
     console:
       enabled: true
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+    thymeleaf:
+      cache: false
   Security:
     oauth2:
       client:
@@ -18,7 +25,6 @@ spring:
             scope:
               - email
               - profile
-
 jwt:
   issuer: sj7934@gmail.com
   secret_key: Backend-developer

@@ -3,6 +3,7 @@ package me.leeseungjun.dto;
 import lombok.Getter;
 import me.leeseungjun.domain.Article;
 
+//글 전체를 보여주기 위한 dto
 @Getter
 public class ArticleListViewResponse {
     private final Long id;

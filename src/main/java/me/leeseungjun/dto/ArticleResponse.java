@@ -2,7 +2,7 @@ package me.leeseungjun.dto;
 
 import lombok.Getter;
 import me.leeseungjun.domain.Article;
-//전체 글 목록을 조회하고응답하는 역할
+//전체 글 목록을 조회하고 응답하는 역할
 @Getter
 public class ArticleResponse {
 
